@@ -1,7 +1,8 @@
-import pytest
 from datetime import date
+
+import pytest
+
 from gym import Gym, CustomerNotFound
-from customer import Customer
 
 
 def test_register_customer():
