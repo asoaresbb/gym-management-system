@@ -1,8 +1,9 @@
 from tkinter import *
 
-from usuarios import Usuarios
+from users import Users
 
 
+# Resposta 2a
 class Application:
     def __init__(self, master=None):
         self.fonte = ("Verdana", "8")
@@ -47,7 +48,7 @@ class Application:
         self.titulo.pack()
 
         self.lblidusuario = Label(self.container2,
-                                  text="idUsuario:", font=self.fonte, width=10)
+                                  text="idUtilizador:", font=self.fonte, width=10)
         self.lblidusuario.pack(side=LEFT)
 
         self.txtidusuario = Entry(self.container2)
@@ -87,7 +88,7 @@ class Application:
         self.txtemail["font"] = self.fonte
         self.txtemail.pack(side=LEFT)
 
-        self.lblusuario = Label(self.container6, text="Usuário:",
+        self.lblusuario = Label(self.container6, text="Utilizador:",
                                 font=self.fonte, width=10)
         self.lblusuario.pack(side=LEFT)
 
@@ -123,7 +124,7 @@ class Application:
         self.lblmsg.pack()
 
     def inserirUsuario(self):
-        user = Usuarios()
+        user = Users()
 
         user.nome = self.txtnome.get()
         user.telefone = self.txttelefone.get()
@@ -141,7 +142,7 @@ class Application:
         self.txtsenha.delete(0, END)
 
     def alterarUsuario(self):
-        user = Usuarios()
+        user = Users()
 
         user.idusuario = self.txtidusuario.get()
         user.nome = self.txtnome.get()
@@ -160,7 +161,7 @@ class Application:
         self.txtsenha.delete(0, END)
 
     def excluirUsuario(self):
-        user = Usuarios()
+        user = Users()
 
         user.idusuario = self.txtidusuario.get()
 
@@ -174,7 +175,7 @@ class Application:
         self.txtsenha.delete(0, END)
 
     def buscarUsuario(self):
-        user = Usuarios()
+        user = Users()
 
         idusuario = self.txtidusuario.get()
 

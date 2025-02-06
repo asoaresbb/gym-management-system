@@ -3,32 +3,25 @@ from datetime import date
 from customer import Customer
 
 
-class FitnessGym:
+class Gym:
     def __init__(self, name: str):
         self._name = name
-        self._customers: list[Customer] = []
 
+    # Resposta 1a
     def register_customer(self, name: str, birthday: date):
-        customer = Customer(name, birthday, id=str(len(self._customers)))
-        self._customers.append(customer)
+        raise NotImplementedError
 
+    # Resposta 1a
     def get_all_customers(self) -> list[Customer]:
-        return self._customers
+        raise NotImplementedError
 
+    # Resposta 1a
     def search_customer(self, name: str) -> list[Customer]:
-        return [customer for customer in self._customers if name.lower() in customer.name.lower()]
+        raise NotImplementedError
 
+    def edit_customer_by_id(self, iD: str):
+        raise NotImplementedError
+
+    # Resposta 1a
     def delete_customer_by_id(self, iD: str):
-        customer_to_delete: list[Customer] = []
-        for customer in self._customers:
-            if customer.id == iD:
-                customer_to_delete.append(customer)
-                break
-        if customer_to_delete:
-            self._customers.remove(customer_to_delete[0])
-        else:
-            raise CustomerNotFound()
-
-
-class CustomerNotFound(Exception):
-    ...
+        raise NotImplementedError

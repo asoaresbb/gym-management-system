@@ -2,6 +2,7 @@
 import sqlite3
 
 
+# Resposta 2a
 class Banco:
 
     def __init__(self):

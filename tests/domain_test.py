@@ -2,11 +2,12 @@ from datetime import date
 
 import pytest
 
-from gym import FitnessGym, CustomerNotFound
+from fitnessGym import FitnessGym, CustomerNotFound
 
 
+# Resposta 2a
 def test_register_customer():
-    gym = FitnessGym("Academia da Rebeca")
+    gym = FitnessGym("Academia UAB")
     gym.register_customer(name="Ana Souza", birthday=date(1985, 8, 15))
 
     customers = gym.get_all_customers()
@@ -15,8 +16,9 @@ def test_register_customer():
     assert any(c.birthday == date(1985, 8, 15) for c in customers)
 
 
+# Resposta 2a
 def test_get_all_customers():
-    gym = FitnessGym("Academia da Rebeca")
+    gym = FitnessGym("Academia UAB")
     gym.register_customer(name="João Silva", birthday=date(1990, 5, 20))
 
     customers = gym.get_all_customers()
@@ -25,8 +27,9 @@ def test_get_all_customers():
     assert any(c.name == "João Silva" for c in customers)
 
 
+# Resposta 2a
 def test_search_customer():
-    gym = FitnessGym("Academia da Rebeca")
+    gym = FitnessGym("Academia UAB")
     gym.register_customer(name="João Silva", birthday=date(1990, 5, 20))
 
     result = gym.search_customer("João Silva")
@@ -35,8 +38,9 @@ def test_search_customer():
     assert any(c.name == "João Silva" for c in result)
 
 
+# Resposta 2a
 def test_delete_customer():
-    gym = FitnessGym("Academia da Rebeca")
+    gym = FitnessGym("Academia UAB")
     gym.register_customer(name="Maria Oliveira", birthday=date(1987, 3, 10))
     customers_before = gym.get_all_customers()
     assert any(c.name == "Maria Oliveira" for c in customers_before)
@@ -48,7 +52,7 @@ def test_delete_customer():
 
 
 def test_delete_nonexistent_customer():
-    gym = FitnessGym("Academia da Rebeca")
+    gym = FitnessGym("Academia UAB")
 
     with pytest.raises(CustomerNotFound):
         gym.delete_customer_by_id("999")

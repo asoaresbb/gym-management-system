@@ -1,11 +1,11 @@
 from datetime import datetime
 
 from customer import Customer
-from gym import CustomerNotFound, FitnessGym
+from fitnessGym import CustomerNotFound, FitnessGym
 
 
 def start_app():
-    gym = FitnessGym("Academia da Rebeca")
+    gym = FitnessGym("Academia UAB")
 
     while True:
         print("\n1. Registar novo cliente")
@@ -26,7 +26,7 @@ def start_app():
             _handle_search_customer(gym)
 
         elif option == "4":
-            print("")
+            _handle_edit_customer_by_id(gym)
 
         elif option == "5":
             _handle_delete_customer_by_id(gym)
@@ -38,6 +38,9 @@ def start_app():
         else:
             print("Opção inválida! Escolha um número entre 1 e 5.")
 
+
+def _handle_edit_customer_by_id(gym: FitnessGym):
+    ...
 
 def _handle_delete_customer_by_id(gym: FitnessGym):
     customers = gym.get_all_customers()
