@@ -1,10 +1,11 @@
 from datetime import datetime
-from gym import CustomerNotFound, Gym
+
 from customer import Customer
+from gym import CustomerNotFound, FitnessGym
 
 
 def start_app():
-    gym = Gym("Academia da Rebeca")
+    gym = FitnessGym("Academia da Rebeca")
 
     while True:
         print("\n1. Registar novo cliente")
@@ -38,7 +39,7 @@ def start_app():
             print("Opção inválida! Escolha um número entre 1 e 5.")
 
 
-def _handle_delete_customer_by_id(gym: Gym):
+def _handle_delete_customer_by_id(gym: FitnessGym):
     customers = gym.get_all_customers()
     _print_customers(customers)
     id = input("Qual é o id do cliente que deseja apagar? ")
@@ -48,7 +49,7 @@ def _handle_delete_customer_by_id(gym: Gym):
         print(f"Cliente com {id} nao encontrado.")
 
 
-def _handle_search_customer(gym: Gym):
+def _handle_search_customer(gym: FitnessGym):
     name = input("Qual é o nome do cliente que deseja pesquisar? ")
     customers = gym.search_customer(name)
     if customers:
@@ -62,7 +63,7 @@ def _print_customers(customers: list[Customer]):
         print(f"{customer.id} {customer.name:<20} {customer.birthday}")
 
 
-def _handle_register_customer(gym: Gym):
+def _handle_register_customer(gym: FitnessGym):
     name = input("Qual é o nome do cliente: ")
     date_str = input("Qual a data de nascimento do cliente (DD-MM-YYYY)? ")
     gym.register_customer(
@@ -72,7 +73,7 @@ def _handle_register_customer(gym: Gym):
     print(f"{name} registado com sucesso!")
 
 
-def _handle_show_all_customers(gym: Gym):
+def _handle_show_all_customers(gym: FitnessGym):
     print("Clientes registados: ")
     customers = gym.get_all_customers()
     if customers:
