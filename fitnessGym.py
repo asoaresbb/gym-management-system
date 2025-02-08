@@ -25,19 +25,19 @@ class FitnessGym(Gym):
                 return customer
         raise CustomerNotFound()
 
-    def edit_customer_by_id(self, id: str, name: str, birthday: str):
+    def edit_customer_by_id(self, id: str, name: str, birthday: date):
         customer_to_edit: Customer = self.search_customer_by_id(id)
         customer_to_edit.name = name
         customer_to_edit.birthday = birthday
 
     def delete_customer_by_id(self, id: str):
-        customer_to_delete: str = []
+        customer_to_delete: str = None
         for customer in self._customers:
             if customer.id == id:
                 customer_to_delete = customer
                 break
         if customer_to_delete:
-            self._customers.remove(customer_to_delete[0])
+            self._customers.remove(customer_to_delete)
         else:
             raise CustomerNotFound()
 
