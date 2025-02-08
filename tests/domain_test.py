@@ -32,7 +32,7 @@ def test_search_customer():
     gym = FitnessGym("Academia UAB")
     gym.register_customer(name="João Silva", birthday=date(1990, 5, 20))
 
-    result = gym.search_customer("João Silva")
+    result = gym.search_customer_by_name("João Silva")
 
     assert len(result) > 0
     assert any(c.name == "João Silva" for c in result)

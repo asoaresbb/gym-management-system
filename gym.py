@@ -16,10 +16,13 @@ class Gym:
         raise NotImplementedError
 
     # Resposta 1a
-    def search_customer(self, name: str) -> list[Customer]:
+    def search_customer_by_name(self, name: str) -> list[Customer]:
         raise NotImplementedError
 
-    def edit_customer_by_id(self, iD: str):
+    def search_customer_by_id(self, id: str) -> list[Customer]:
+        raise NotImplementedError
+
+    def edit_customer_by_id(self, id: str, name: str, birthday: str):
         raise NotImplementedError
 
     # Resposta 1a

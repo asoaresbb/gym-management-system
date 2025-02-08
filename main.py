@@ -64,7 +64,7 @@ def _handle_delete_customer_by_id(vivaGym: FitnessGym):
 
 def _handle_search_customer(vivaGym: FitnessGym):
     name = input("Qual é o nome do cliente que deseja pesquisar? ")
-    customers = vivaGym.search_customer(name)
+    customers = vivaGym.search_customer_by_name(name)
     if customers:
         _print_customers(customers)
     else:
