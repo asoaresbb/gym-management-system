@@ -19,7 +19,7 @@ class FitnessGym(Gym):
     def search_customer_by_name(self, name: str) -> list[Customer]:
         return [customer for customer in self._customers if name.lower() in customer.name.lower()]
 
-    def search_customer_by_id(self, id: str):
+    def search_customer_by_id(self, id: str) -> Customer:
         for customer in self._customers:
             if customer.id == id:
                 return customer
