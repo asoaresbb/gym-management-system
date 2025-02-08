@@ -5,7 +5,7 @@ from fitnessGym import CustomerNotFound, FitnessGym
 
 
 def start_app():
-    gym = FitnessGym("Academia UAB")
+    vivaGym = FitnessGym("VivaGym Academy")
 
     while True:
         print("\n1. Registar novo cliente")
@@ -17,19 +17,19 @@ def start_app():
         option = input("Escolhe uma opção: ")
 
         if option == "1":
-            _handle_register_customer(gym)
+            _handle_register_customer(vivaGym)
 
         elif option == "2":
-            _handle_show_all_customers(gym)
+            _handle_show_all_customers(vivaGym)
 
         elif option == "3":
-            _handle_search_customer(gym)
+            _handle_search_customer(vivaGym)
 
         elif option == "4":
-            _handle_edit_customer_by_id(gym)
+            _handle_edit_customer_by_id(vivaGym)
 
         elif option == "5":
-            _handle_delete_customer_by_id(gym)
+            _handle_delete_customer_by_id(vivaGym)
 
         elif option == "6":
             print("Até à próxima!")
@@ -39,22 +39,32 @@ def start_app():
             print("Opção inválida! Escolha um número entre 1 e 5.")
 
 
-def _handle_edit_customer_by_id(gym: FitnessGym):
-    ...
+def _handle_edit_customer_by_id(vivaGym: FitnessGym):
+    customers = vivaGym.get_all_customers()
+    _print_customers(customers)
+    id = input("Qual é o id do cliente que deseja editar? ")
+    try:
+        vivaGym.search_customer_by_id(id)
+        name = input("Qual é o novo nome?")
+        birthday = input("Qual é a nova data de nascimento?")
+        vivaGym.edit_customer_by_id(id, name, birthday)
+    except CustomerNotFound:
+        print(f"Cliente com id {id} nao encontrado.")
 
-def _handle_delete_customer_by_id(gym: FitnessGym):
-    customers = gym.get_all_customers()
+
+def _handle_delete_customer_by_id(vivaGym: FitnessGym):
+    customers = vivaGym.get_all_customers()
     _print_customers(customers)
     id = input("Qual é o id do cliente que deseja apagar? ")
     try:
-        gym.delete_customer_by_id(id)
+        vivaGym.delete_customer_by_id(id)
     except CustomerNotFound:
         print(f"Cliente com {id} nao encontrado.")
 
 
-def _handle_search_customer(gym: FitnessGym):
+def _handle_search_customer(vivaGym: FitnessGym):
     name = input("Qual é o nome do cliente que deseja pesquisar? ")
-    customers = gym.search_customer(name)
+    customers = vivaGym.search_customer(name)
     if customers:
         _print_customers(customers)
     else:
@@ -63,22 +73,22 @@ def _handle_search_customer(gym: FitnessGym):
 
 def _print_customers(customers: list[Customer]):
     for customer in customers:
-        print(f"{customer.id} {customer.name:<20} {customer.birthday}")
+        print(f"{customer.id} {customer.name:<20} {customer.birthday.strftime('%d-%m-%Y')}")
 
 
-def _handle_register_customer(gym: FitnessGym):
+def _handle_register_customer(vivaGym: FitnessGym):
     name = input("Qual é o nome do cliente: ")
     date_str = input("Qual a data de nascimento do cliente (DD-MM-YYYY)? ")
-    gym.register_customer(
+    vivaGym.register_customer(
         name=name,
         birthday=datetime.strptime(date_str, "%d-%m-%Y").date(),
-    ),
+    )
     print(f"{name} registado com sucesso!")
 
 
-def _handle_show_all_customers(gym: FitnessGym):
+def _handle_show_all_customers(vivaGym: FitnessGym):
     print("Clientes registados: ")
-    customers = gym.get_all_customers()
+    customers = vivaGym.get_all_customers()
     if customers:
         _print_customers(customers)
     else:

@@ -19,14 +19,22 @@ class FitnessGym(Gym):
     def search_customer(self, name: str) -> list[Customer]:
         return [customer for customer in self._customers if name.lower() in customer.name.lower()]
 
-    def edit_customer_by_id(self, iD: str):
-        ...
-
-    def delete_customer_by_id(self, iD: str):
-        customer_to_delete: list[Customer] = []
+    def search_customer_by_id(self, id: str):
         for customer in self._customers:
-            if customer.id == iD:
-                customer_to_delete.append(customer)
+            if customer.id == id:
+                return customer
+        raise CustomerNotFound()
+
+    def edit_customer_by_id(self, id: str, name: str, birthday: str):
+        customer_to_edit: Customer = self.search_customer_by_id(id)
+        customer_to_edit.name = name
+        customer_to_edit.birthday = birthday
+
+    def delete_customer_by_id(self, id: str):
+        customer_to_delete: str = []
+        for customer in self._customers:
+            if customer.id == id:
+                customer_to_delete = customer
                 break
         if customer_to_delete:
             self._customers.remove(customer_to_delete[0])
