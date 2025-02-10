@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from customer import Customer
 from fitnessGym import CustomerNotFound, FitnessGym
 
@@ -39,60 +37,64 @@ def start_app():
             print("Opção inválida! Escolha um número entre 1 e 5.")
 
 
+def _handle_register_customer(vivaGym: FitnessGym):
+    name = input("What's client name: ")
+    phoneNumber = input("What's client number: ")
+    email = input("What's client e-mail: ")
+    user = input("What's client username: ")
+    password = input("What's client password: ")
+    vivaGym.register_customer(name)
+    print(f"{name} registered with success!")
+
+
+def _print_customers(customers: list[Customer]):
+    for customer in customers:
+        print(
+            f"{customer.id} {customer.name:<20} {customer.phoneNumber:<12} {customer.email:<20} {cutomer.user:<8} {customer.password:<12}")
+
+
+def _handle_show_all_customers(vivaGym: FitnessGym):
+    print("Registered clients: ")
+    customers = vivaGym.get_all_customers()
+    if customers:
+        _print_customers(customers)
+    else:
+        print("There is no registered clients.")
+
+
+def _handle_search_customer(vivaGym: FitnessGym):
+    name = input("Which client are you trying to find? ")
+    customers = vivaGym.get_customer_by_name(name)
+    if customers:
+        _print_customers(customers)
+    else:
+        print(f"Client '{name}' not found.")
+
+
 def _handle_edit_customer_by_id(vivaGym: FitnessGym):
     customers = vivaGym.get_all_customers()
     _print_customers(customers)
-    id = input("Qual é o id do cliente que deseja editar? ")
+    id = input("Which is the Id of the client you want to edit? ")
     try:
         vivaGym.get_customer_by_id(id)
-        name = input("Qual é o novo nome?")
-        birthday = input("Qual é a nova data de nascimento?")
-        vivaGym.edit_customer_by_id(id, name, birthday)
+        name = input("What's the new name?")
+        phoneNumber = input("What's client new number: ")
+        email = input("What's client new e-mail: ")
+        user = input("What's client new username: ")
+        password = input("What's client new password: ")
+        vivaGym.edit_customer_by_id(id, name, phoneNumber, email, user, password)
     except CustomerNotFound:
-        print(f"Cliente com id {id} nao encontrado.")
+        print(f"Client with Id {id} not found.")
 
 
 def _handle_delete_customer_by_id(vivaGym: FitnessGym):
     customers = vivaGym.get_all_customers()
     _print_customers(customers)
-    id = input("Qual é o id do cliente que deseja apagar? ")
+    id = input("Which is the Id of the client you want to delete? ")
     try:
         vivaGym.delete_customer_by_id(id)
     except CustomerNotFound:
-        print(f"Cliente com {id} nao encontrado.")
-
-
-def _handle_search_customer(vivaGym: FitnessGym):
-    name = input("Qual é o nome do cliente que deseja pesquisar? ")
-    customers = vivaGym.get_customer_by_name(name)
-    if customers:
-        _print_customers(customers)
-    else:
-        print(f"Cliente '{name}' não encontrado.")
-
-
-def _print_customers(customers: list[Customer]):
-    for customer in customers:
-        print(f"{customer.id} {customer.name:<20} {customer.birthday.strftime('%d-%m-%Y')}")
-
-
-def _handle_register_customer(vivaGym: FitnessGym):
-    name = input("Qual é o nome do cliente: ")
-    date_str = input("Qual a data de nascimento do cliente (DD-MM-YYYY)? ")
-    vivaGym.register_customer(
-        name=name,
-        birthday=datetime.strptime(date_str, "%d-%m-%Y").date(),
-    )
-    print(f"{name} registado com sucesso!")
-
-
-def _handle_show_all_customers(vivaGym: FitnessGym):
-    print("Clientes registados: ")
-    customers = vivaGym.get_all_customers()
-    if customers:
-        _print_customers(customers)
-    else:
-        print("Não há clientes registados.")
+        print(f"Client with Id {id} not found.")
 
 
 if __name__ == "__main__":

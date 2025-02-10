@@ -1,5 +1,3 @@
-from datetime import date
-
 from customer import Customer
 from gym import Gym
 
@@ -9,8 +7,9 @@ class FitnessGym(Gym):
         super().__init__(name)
         self._customers: list[Customer] = []
 
-    def register_customer(self, name: str, birthday: date):
-        customer = Customer(name, birthday, id=str(len(self._customers)))
+    def register_customer(self, name: str, phoneNumber: str, email: str, user: str, password: str):
+        customer = Customer(id=str(len(self._customers)), name=name, phoneNumber=phoneNumber, email=email, user=user,
+                            password=password)
         self._customers.append(customer)
 
     def get_all_customers(self) -> list[Customer]:
@@ -20,15 +19,18 @@ class FitnessGym(Gym):
         return [customer for customer in self._customers if name.lower() in customer.name.lower()]
 
     def get_customer_by_id(self, id: str) -> Customer:
-        for customer in self._customers:
-            if customer.id == id:
-                return customer
-        raise CustomerNotFound()
+        try:
+            return next(customer for customer in self._customers if customer.id == id)
+        except StopIteration:
+            raise CustomerNotFound()
 
-    def edit_customer_by_id(self, id: str, name: str, birthday: date):
+    def edit_customer_by_id(self, id: str, name: str, phoneNumber: str, email: str, user: str, password: str):
         customer_to_edit: Customer = self.get_customer_by_id(id)
         customer_to_edit.name = name
-        customer_to_edit.birthday = birthday
+        customer_to_edit.phoneNumber = phoneNumber
+        customer_to_edit.email = email
+        customer_to_edit.user = user
+        customer_to_edit.password = password
 
     def delete_customer_by_id(self, id: str):
         customer_to_delete: Customer = self.get_customer_by_id(id)
@@ -36,4 +38,4 @@ class FitnessGym(Gym):
 
 
 class CustomerNotFound(Exception):
-    ...
+    pass

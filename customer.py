@@ -1,11 +1,14 @@
 from dataclasses import dataclass
-from datetime import date
+
 
 @dataclass
 class Customer:
-    name: str
-    birthday: date
     id: str
+    name: str
+    phoneNumber: str
+    email: str
+    user: str
+    password: str
 
     # Resposta 1c.
     # Metodo polifórmico que é subscrito pelas subclasses

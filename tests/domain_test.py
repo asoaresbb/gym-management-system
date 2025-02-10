@@ -5,32 +5,45 @@ import pytest
 from fitnessGym import FitnessGym, CustomerNotFound
 
 
-# Resposta 2a
 def test_register_customer():
     gym = FitnessGym("VivaGym Academy")
-    gym.register_customer(name="Ana Souza", birthday=date(1985, 8, 15))
+    gym.register_customer(name="Ana Souza", phoneNumber="917331324", email="ana_souza@gmail.com", user="ASouza",
+                          password="1234")
 
     customers = gym.get_all_customers()
 
     assert any(c.name == "Ana Souza" for c in customers)
-    assert any(c.birthday == date(1985, 8, 15) for c in customers)
+    assert any(c.phoneNumber == "917331324" for c in customers)
+    assert any(c.email == "ana_souza@gmail.com" for c in customers)
+    assert any(c.user == "ASouza" for c in customers)
+    assert any(c.password == "1234" for c in customers)
 
 
-# Resposta 2a
 def test_get_all_customers():
     gym = FitnessGym("VivaGym Academy")
-    gym.register_customer(name="João Silva", birthday=date(1990, 5, 20))
+    gym.register_customer(name="João Silva", phoneNumber="932930094", email="j_silva@yahoo.com", user="JSilva",
+                          password="1234")
+    gym.register_customer(name="Ana Souza", phoneNumber="917331324", email="ana_souza@gmail.com", user="ASouza",
+                          password="1234")
 
     customers = gym.get_all_customers()
 
     assert len(customers) > 0
     assert any(c.name == "João Silva" for c in customers)
+    assert any(c.phoneNumber == "932930094" for c in customers)
+    assert any(c.email == "j_silva@yahoo.com" for c in customers)
+    assert any(c.user == "JSilva" for c in customers)
+    assert any(c.password == "1234" for c in customers)
+    assert any(c.name == "Ana Souza" for c in customers)
+    assert any(c.phoneNumber == "917331324" for c in customers)
+    assert any(c.email == "ana_souza@gmail.com" for c in customers)
+    assert any(c.user == "ASouza" for c in customers)
+    assert any(c.password == "1234" for c in customers)
 
-
-# Resposta 2a
 def test_search_customer_by_name():
     gym = FitnessGym("VivaGym Academy")
-    gym.register_customer(name="João Silva", birthday=date(1990, 5, 20))
+    gym.register_customer(name="João Silva", phoneNumber="932930094", email="j_silva@yahoo.com", user="JSilva",
+                          password="1234")
 
     result = gym.get_customer_by_name("João Silva")
 
@@ -40,18 +53,26 @@ def test_search_customer_by_name():
 
 def test_search_customer_by_id():
     gym = FitnessGym("VivaGym Academy")
-    gym.register_customer("Jose Carlos", birthday=date(2000, 10, 30))
+    gym.register_customer(name="Carlos Lopes", phoneNumber="914252253", email="c_lopes@yahoo.com", user="CLopes",
+                          password="1234")
 
     result = gym.get_customer_by_id("0")
 
     assert result.id == "0"
+    assert result.name == "Carlos Lopes"
+    assert result.phoneNumber == "914252253"
+    assert result.email == "c_lopes@yahoo.com"
+    assert result.user == "CLopes"
+    assert result.password == "1234"
 
 
 def test_edit_customer_by_id():
     gym = FitnessGym("VivaGym Academy")
-    gym.register_customer("Bernardo", birthday=date(1976, 3, 23))
+    gym.register_customer(name="Rogerio", phoneNumber="913214223", email="r_samp@hotmail.com", user="Rogi99",
+                          password="1234")
 
-    gym.edit_customer_by_id("0", "Rogerio", birthday=date(1950, 4, 25))
+    gym.edit_customer_by_id("0", "Rogerio", phoneNumber="969757724", email="rr_99@hotmail.com", user="RR99",
+                            password="1234")
     result = gym.get_customer_by_id("0")
 
     assert result.name == "Rogerio" and result.birthday == date(1950, 4, 25)
@@ -60,7 +81,8 @@ def test_edit_customer_by_id():
 # Resposta 2a
 def test_delete_customer():
     gym = FitnessGym("VivaGym Academy")
-    gym.register_customer(name="Maria Oliveira", birthday=date(1987, 3, 10))
+    gym.register_customer(name="Maria Oliveira", phoneNumber="935332524", email="mmoliv@yahoo.com", user="MOliv",
+                          password="1234")
     customers_before = gym.get_all_customers()
     assert any(c.name == "Maria Oliveira" for c in customers_before)
     customer_id = next(c.id for c in customers_before if c.name == "Maria Oliveira")
