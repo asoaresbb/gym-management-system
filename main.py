@@ -6,13 +6,13 @@ def start_app():
     vivaGym = FitnessGym("VivaGym Academy")
 
     while True:
-        print("\n1. Registar novo cliente")
-        print("2. Mostrar todos os clientes")
-        print("3. Pesquisar cliente")
-        print("4. Editar dados de cliente")
-        print("5. Apagar cliente")
-        print("6. Sair\n")
-        option = input("Escolhe uma opção: ")
+        print("\n1. Register new client")
+        print("2. Show all clients")
+        print("3. Search client")
+        print("4. Edit client info")
+        print("5. Delete client")
+        print("6. Exit\n")
+        option = input("Choose an option: ")
 
         if option == "1":
             _handle_register_customer(vivaGym)
@@ -30,11 +30,11 @@ def start_app():
             _handle_delete_customer_by_id(vivaGym)
 
         elif option == "6":
-            print("Até à próxima!")
+            print("See you later!")
             break
 
         else:
-            print("Opção inválida! Escolha um número entre 1 e 5.")
+            print("Invalid option! Choose between 1 and 6.")
 
 
 def _handle_register_customer(vivaGym: FitnessGym):
@@ -43,14 +43,14 @@ def _handle_register_customer(vivaGym: FitnessGym):
     email = input("What's client e-mail: ")
     user = input("What's client username: ")
     password = input("What's client password: ")
-    vivaGym.register_customer(name)
+    vivaGym.register_customer(name, phoneNumber, email, user, password)
     print(f"{name} registered with success!")
 
 
 def _print_customers(customers: list[Customer]):
     for customer in customers:
         print(
-            f"{customer.id} {customer.name:<20} {customer.phoneNumber:<12} {customer.email:<20} {cutomer.user:<8} {customer.password:<12}")
+            f"{customer.id} {customer.name:<20} {customer.phoneNumber:<12} {customer.email:<20} {customer.user:<8} {customer.password:<12}")
 
 
 def _handle_show_all_customers(vivaGym: FitnessGym):

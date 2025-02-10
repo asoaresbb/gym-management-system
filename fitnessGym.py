@@ -24,13 +24,20 @@ class FitnessGym(Gym):
         except StopIteration:
             raise CustomerNotFound()
 
-    def edit_customer_by_id(self, id: str, name: str, phoneNumber: str, email: str, user: str, password: str):
+    def edit_customer_by_id(self, id: str, name: str = "", phoneNumber: str = "", email: str = "", user: str = "",
+                            password: str = ""):
         customer_to_edit: Customer = self.get_customer_by_id(id)
-        customer_to_edit.name = name
-        customer_to_edit.phoneNumber = phoneNumber
-        customer_to_edit.email = email
-        customer_to_edit.user = user
-        customer_to_edit.password = password
+
+        if name:
+            customer_to_edit.name = name
+        if phoneNumber:
+            customer_to_edit.phoneNumber = phoneNumber
+        if email:
+            customer_to_edit.email = email
+        if user:
+            customer_to_edit.user = user
+        if password:
+            customer_to_edit.password = password
 
     def delete_customer_by_id(self, id: str):
         customer_to_delete: Customer = self.get_customer_by_id(id)
