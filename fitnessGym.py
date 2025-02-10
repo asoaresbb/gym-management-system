@@ -1,5 +1,4 @@
 from datetime import date
-from typing import Optional
 
 from customer import Customer
 from gym import Gym
@@ -17,22 +16,22 @@ class FitnessGym(Gym):
     def get_all_customers(self) -> list[Customer]:
         return self._customers
 
-    def search_customer_by_name(self, name: str) -> list[Customer]:
+    def get_customer_by_name(self, name: str) -> list[Customer]:
         return [customer for customer in self._customers if name.lower() in customer.name.lower()]
 
-    def search_customer_by_id(self, id: str) -> Customer:
+    def get_customer_by_id(self, id: str) -> Customer:
         for customer in self._customers:
             if customer.id == id:
                 return customer
         raise CustomerNotFound()
 
     def edit_customer_by_id(self, id: str, name: str, birthday: date):
-        customer_to_edit: Optional[Customer] = self.search_customer_by_id(id)
+        customer_to_edit: Customer = self.get_customer_by_id(id)
         customer_to_edit.name = name
         customer_to_edit.birthday = birthday
 
     def delete_customer_by_id(self, id: str):
-        customer_to_delete: Optional[Customer] = self.search_customer_by_id(id)
+        customer_to_delete: Customer = self.get_customer_by_id(id)
         self._customers.remove(customer_to_delete)
 
 

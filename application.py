@@ -56,7 +56,7 @@ class Application:
         self.txtidusuario["font"] = self.fonte
         self.txtidusuario.pack(side=LEFT)
 
-        self.btnBuscar = Button(self.container2, text="Buscar",
+        self.btnBuscar = Button(self.container2, text="Procurar",
                                 font=self.fonte, width=10)
         self.btnBuscar["command"] = self.buscarUsuario
         self.btnBuscar.pack(side=RIGHT)
@@ -97,7 +97,7 @@ class Application:
         self.txtusuario["font"] = self.fonte
         self.txtusuario.pack(side=LEFT)
 
-        self.lblsenha = Label(self.container7, text="Senha:",
+        self.lblsenha = Label(self.container7, text="Password:",
                               font=self.fonte, width=10)
         self.lblsenha.pack(side=LEFT)
 
@@ -107,7 +107,7 @@ class Application:
         self.txtsenha["font"] = self.fonte
         self.txtsenha.pack(side=LEFT)
 
-        self.bntInsert = Button(self.container8, text="Inserir", font=self.fonte, width=12)
+        self.bntInsert = Button(self.container8, text="Adicionar", font=self.fonte, width=12)
         self.bntInsert["command"] = self.inserirUsuario
         self.bntInsert.pack(side=LEFT)
 
@@ -115,7 +115,7 @@ class Application:
         self.bntAlterar["command"] = self.alterarUsuario
         self.bntAlterar.pack(side=LEFT)
 
-        self.bntExcluir = Button(self.container8, text="Excluir", font=self.fonte, width=12)
+        self.bntExcluir = Button(self.container8, text="Apagar", font=self.fonte, width=12)
         self.bntExcluir["command"] = self.excluirUsuario
         self.bntExcluir.pack(side=LEFT)
 
@@ -201,5 +201,6 @@ class Application:
 
 
 root = Tk()
+root.title("Gymnasium management system")
 Application(root)
 root.mainloop()

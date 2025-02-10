@@ -44,7 +44,7 @@ def _handle_edit_customer_by_id(vivaGym: FitnessGym):
     _print_customers(customers)
     id = input("Qual é o id do cliente que deseja editar? ")
     try:
-        vivaGym.search_customer_by_id(id)
+        vivaGym.get_customer_by_id(id)
         name = input("Qual é o novo nome?")
         birthday = input("Qual é a nova data de nascimento?")
         vivaGym.edit_customer_by_id(id, name, birthday)
@@ -64,7 +64,7 @@ def _handle_delete_customer_by_id(vivaGym: FitnessGym):
 
 def _handle_search_customer(vivaGym: FitnessGym):
     name = input("Qual é o nome do cliente que deseja pesquisar? ")
-    customers = vivaGym.search_customer_by_name(name)
+    customers = vivaGym.get_customer_by_name(name)
     if customers:
         _print_customers(customers)
     else:

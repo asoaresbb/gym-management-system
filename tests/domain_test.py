@@ -32,7 +32,7 @@ def test_search_customer_by_name():
     gym = FitnessGym("VivaGym Academy")
     gym.register_customer(name="João Silva", birthday=date(1990, 5, 20))
 
-    result = gym.search_customer_by_name("João Silva")
+    result = gym.get_customer_by_name("João Silva")
 
     assert len(result) > 0
     assert any(c.name == "João Silva" for c in result)
@@ -42,7 +42,7 @@ def test_search_customer_by_id():
     gym = FitnessGym("VivaGym Academy")
     gym.register_customer("Jose Carlos", birthday=date(2000, 10, 30))
 
-    result = gym.search_customer_by_id("0")
+    result = gym.get_customer_by_id("0")
 
     assert result.id == "0"
 
@@ -52,7 +52,7 @@ def test_edit_customer_by_id():
     gym.register_customer("Bernardo", birthday=date(1976, 3, 23))
 
     gym.edit_customer_by_id("0", "Rogerio", birthday=date(1950, 4, 25))
-    result = gym.search_customer_by_id("0")
+    result = gym.get_customer_by_id("0")
 
     assert result.name == "Rogerio" and result.birthday == date(1950, 4, 25)
 
