@@ -7,8 +7,9 @@ class FitnessGym(Gym):
         super().__init__(name)
         self._customers: list[Customer] = []
 
-    def register_customer(self, customer: Customer):
-        customer.id = str(len(self._customers))
+    def register_customer(self, name: str, phoneNumber: str, email: str, user: str, password: str):
+        customer = Customer(id=str(len(self._customers)), name=name, phoneNumber=phoneNumber, email=email, user=user,
+                            password=password)
         self._customers.append(customer)
 
     def get_all_customers(self) -> list[Customer]:

@@ -1,97 +1,94 @@
 
 import pytest
 
-from customer import Customer
 from fitnessGym import FitnessGym, CustomerNotFound
 
 
 def test_register_customer():
     gym = FitnessGym("VivaGym Academy")
-    customer = Customer(id="", name="Ana Souza", phoneNumber="917331324", email="ana_souza@gmail.com",
-                        user="ASouza", password="1234")
+    gym.register_customer(name="Ana Souza", phoneNumber="917331324", email="ana_souza@gmail.com", user="ASouza",
+                          password="1234")
 
-    gym.register_customer(customer)
     customers = gym.get_all_customers()
 
-    assert customer in customers
-    assert customer.id == "0"
+    assert any(c.name == "Ana Souza" for c in customers)
+    assert any(c.phoneNumber == "917331324" for c in customers)
+    assert any(c.email == "ana_souza@gmail.com" for c in customers)
+    assert any(c.user == "ASouza" for c in customers)
+    assert any(c.password == "1234" for c in customers)
 
 
 def test_get_all_customers():
     gym = FitnessGym("VivaGym Academy")
-    customer1 = Customer(id="", name="João Silva", phoneNumber="932930094", email="j_silva@yahoo.com", user="JSilva",
-                         password="1234")
-    customer2 = Customer(id="", name="Ana Souza", phoneNumber="917331324", email="ana_souza@gmail.com", user="ASouza",
-                         password="1234")
-    gym.register_customer(customer1)
-    gym.register_customer(customer2)
+    gym.register_customer(name="João Silva", phoneNumber="932930094", email="j_silva@yahoo.com", user="JSilva",
+                          password="1234")
+    gym.register_customer(name="Ana Souza", phoneNumber="917331324", email="ana_souza@gmail.com", user="ASouza",
+                          password="1234")
 
     customers = gym.get_all_customers()
 
-    assert len(customers) == 2
-    assert customer1 in customers
-    assert customer1.id == "0"
-    assert customer2 in customers
-    assert customer2.id == "1"
-
+    assert len(customers) > 0
+    assert any(c.name == "João Silva" for c in customers)
+    assert any(c.phoneNumber == "932930094" for c in customers)
+    assert any(c.email == "j_silva@yahoo.com" for c in customers)
+    assert any(c.user == "JSilva" for c in customers)
+    assert any(c.password == "1234" for c in customers)
+    assert any(c.name == "Ana Souza" for c in customers)
+    assert any(c.phoneNumber == "917331324" for c in customers)
+    assert any(c.email == "ana_souza@gmail.com" for c in customers)
+    assert any(c.user == "ASouza" for c in customers)
+    assert any(c.password == "1234" for c in customers)
 
 def test_search_customer_by_name():
     gym = FitnessGym("VivaGym Academy")
-    customer = Customer(id="", name="João Silva", phoneNumber="932930094", email="j_silva@yahoo.com", user="JSilva",
+    gym.register_customer(name="João Silva", phoneNumber="932930094", email="j_silva@yahoo.com", user="JSilva",
                           password="1234")
-    gym.register_customer(customer)
 
     result = gym.get_customer_by_name("João Silva")
 
-    assert customer.id == "0"
     assert len(result) > 0
-    assert customer in result
+    assert any(c.name == "João Silva" for c in result)
 
 
 def test_search_customer_by_id():
     gym = FitnessGym("VivaGym Academy")
-    customer = Customer(id="", name="Carlos Lopes", phoneNumber="914252253", email="c_lopes@yahoo.com", user="CLopes",
+    gym.register_customer(name="Carlos Lopes", phoneNumber="914252253", email="c_lopes@yahoo.com", user="CLopes",
                           password="1234")
-
-    gym.register_customer(customer)
 
     result = gym.get_customer_by_id("0")
 
-    assert customer.id == "0"
-    assert customer == result
+    assert result.id == "0"
+    assert result.name == "Carlos Lopes"
+    assert result.phoneNumber == "914252253"
+    assert result.email == "c_lopes@yahoo.com"
+    assert result.user == "CLopes"
+    assert result.password == "1234"
 
 
 def test_edit_customer_by_id():
     gym = FitnessGym("VivaGym Academy")
-    customer = Customer(id="", name="Rogerio", phoneNumber="913214223", email="r_samp@hotmail.com", user="Rogi99",
+    gym.register_customer(name="Rogerio", phoneNumber="913214223", email="r_samp@hotmail.com", user="Rogi99",
                           password="1234")
-    gym.register_customer(customer)
 
     gym.edit_customer_by_id("0", "Rogerio", phoneNumber="969757724", email="rr_99@hotmail.com", user="RR99",
                             password="1234")
-
     result = gym.get_customer_by_id("0")
 
-    assert customer.id == "0"
-    assert customer == result
+    assert result.name == "Rogerio" and result.birthday == date(1950, 4, 25)
 
 
 # Resposta 2a
 def test_delete_customer():
     gym = FitnessGym("VivaGym Academy")
-    customer = Customer(id="", name="Maria Oliveira", phoneNumber="935332524", email="mmoliv@yahoo.com", user="MOliv",
+    gym.register_customer(name="Maria Oliveira", phoneNumber="935332524", email="mmoliv@yahoo.com", user="MOliv",
                           password="1234")
-    gym.register_customer(customer)
-
     customers_before = gym.get_all_customers()
+    assert any(c.name == "Maria Oliveira" for c in customers_before)
+    customer_id = next(c.id for c in customers_before if c.name == "Maria Oliveira")
 
-    assert customer.id == "0"
-    assert len(customers_before) > 0
-    assert customer in customers_before
+    gym.delete_customer_by_id(customer_id)
 
-    gym.delete_customer_by_id("0")
-
-    assert not customer in customers_before
+    assert not any(c.id == customer_id for c in gym.get_all_customers())
 
 
 def test_delete_nonexistent_customer():

@@ -43,9 +43,7 @@ def _handle_register_customer(vivaGym: FitnessGym):
     email = input("What's client e-mail: ")
     user = input("What's client username: ")
     password = input("What's client password: ")
-
-    customer = Customer(id="", name=name, phoneNumber=phoneNumber, email=email, user=user, password=password)
-    vivaGym.register_customer(customer)
+    vivaGym.register_customer(name, phoneNumber, email, user, password)
 
     print(f"{name} registered with success!")
 
