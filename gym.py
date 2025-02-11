@@ -9,7 +9,7 @@ class Gym(ABC):
         self._name = name
 
     @abstractmethod
-    def register_customer(self, name: str, birthday: date):
+    def register_customer(self, name: str, phoneNumber: str, email: str, user: str, password: str):
         pass
 
     @abstractmethod

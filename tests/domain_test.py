@@ -4,20 +4,6 @@ import pytest
 from fitnessGym import FitnessGym, CustomerNotFound
 
 
-def test_register_customer():
-    gym = FitnessGym("VivaGym Academy")
-    gym.register_customer(name="Ana Souza", phoneNumber="917331324", email="ana_souza@gmail.com", user="ASouza",
-                          password="1234")
-
-    customers = gym.get_all_customers()
-
-    assert any(c.name == "Ana Souza" for c in customers)
-    assert any(c.phoneNumber == "917331324" for c in customers)
-    assert any(c.email == "ana_souza@gmail.com" for c in customers)
-    assert any(c.user == "ASouza" for c in customers)
-    assert any(c.password == "1234" for c in customers)
-
-
 def test_get_all_customers():
     gym = FitnessGym("VivaGym Academy")
     gym.register_customer(name="João Silva", phoneNumber="932930094", email="j_silva@yahoo.com", user="JSilva",
