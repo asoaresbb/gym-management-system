@@ -15,12 +15,12 @@ def test_get_all_customers():
 
     assert len(customers) > 0
     assert any(c.name == "João Silva" for c in customers)
-    assert any(c.phoneNumber == "932930094" for c in customers)
+    assert any(c.phone_number == "932930094" for c in customers)
     assert any(c.email == "j_silva@yahoo.com" for c in customers)
     assert any(c.user == "JSilva" for c in customers)
     assert any(c.password == "1234" for c in customers)
     assert any(c.name == "Ana Souza" for c in customers)
-    assert any(c.phoneNumber == "917331324" for c in customers)
+    assert any(c.phone_number == "917331324" for c in customers)
     assert any(c.email == "ana_souza@gmail.com" for c in customers)
     assert any(c.user == "ASouza" for c in customers)
     assert any(c.password == "1234" for c in customers)
@@ -45,7 +45,7 @@ def test_search_customer_by_id():
 
     assert result.id == "0"
     assert result.name == "Carlos Lopes"
-    assert result.phoneNumber == "914252253"
+    assert result.phone_number == "914252253"
     assert result.email == "c_lopes@yahoo.com"
     assert result.user == "CLopes"
     assert result.password == "1234"
@@ -55,9 +55,9 @@ def test_edit_customer_by_id():
     gym = FitnessGym("VivaGym Academy")
     gym.register_customer(name="Rogerio", phone_number="913214223", email="r_samp@hotmail.com", user="Rogi99",
                           password="1234")
-
-    gym.edit_customer_by_id("0", "Rogerio", phoneNumber="969757724", email="rr_99@hotmail.com", user="RR99",
+    gym.edit_customer_by_id("0", "Rogerio", phone_number="969757724", email="rr_99@hotmail.com", user="RR99",
                             password="1234")
+
     result = gym.get_customer_by_id("0")
 
     assert result.name == "Rogerio"

@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Customer:
     id: str
     name: str
-    phoneNumber: str
+    phone_number: str
     email: str
     user: str
     password: str

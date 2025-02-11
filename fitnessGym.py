@@ -8,7 +8,7 @@ class FitnessGym(Gym):
         self._customers: list[Customer] = []
 
     def register_customer(self, name: str, phone_number: str, email: str, user: str, password: str):
-        customer = Customer(id=str(len(self._customers)), name=name, phoneNumber=phone_number, email=email, user=user,
+        customer = Customer(id=str(len(self._customers)), name=name, phone_number=phone_number, email=email, user=user,
                             password=password)
         self._customers.append(customer)
 
@@ -31,7 +31,7 @@ class FitnessGym(Gym):
         if name:
             customer_to_edit.name = name
         if phoneNumber:
-            customer_to_edit.phoneNumber = phoneNumber
+            customer_to_edit.phone_number = phoneNumber
         if email:
             customer_to_edit.email = email
         if user:

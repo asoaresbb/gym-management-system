@@ -39,11 +39,11 @@ def start_app():
 
 def _handle_register_customer(vivaGym: FitnessGym):
     name = input("What's client name: ")
-    phoneNumber = input("What's client number: ")
+    phone_number = input("What's client number: ")
     email = input("What's client e-mail: ")
     user = input("What's client username: ")
     password = input("What's client password: ")
-    vivaGym.register_customer(name, phoneNumber, email, user, password)
+    vivaGym.register_customer(name, phone_number, email, user, password)
 
     print(f"{name} registered with success!")
 
@@ -51,7 +51,7 @@ def _handle_register_customer(vivaGym: FitnessGym):
 def _print_customers(customers: list[Customer]):
     for customer in customers:
         print(
-            f"{customer.id} {customer.name:<20} {customer.phoneNumber:<12} {customer.email:<20} {customer.user:<8} {customer.password:<12}")
+            f"{customer.id} {customer.name:<20} {customer.phone_number:<12} {customer.email:<20} {customer.user:<8} {customer.password:<12}")
 
 
 def _handle_show_all_customers(vivaGym: FitnessGym):
@@ -79,11 +79,11 @@ def _handle_edit_customer_by_id(vivaGym: FitnessGym):
     try:
         vivaGym.get_customer_by_id(id)
         name = input("What's the new name?")
-        phoneNumber = input("What's client new number: ")
+        phone_number = input("What's client new number: ")
         email = input("What's client new e-mail: ")
         user = input("What's client new username: ")
         password = input("What's client new password: ")
-        vivaGym.edit_customer_by_id(id, name, phoneNumber, email, user, password)
+        vivaGym.edit_customer_by_id(id, name, phone_number, email, user, password)
     except CustomerNotFound:
         print(f"Client with Id {id} not found.")
 
