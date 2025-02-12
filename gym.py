@@ -13,11 +13,11 @@ class Gym(ABC):
         pass
 
     @abstractmethod
-    def get_all_customers(self) -> list[Customer]:
+    def list_customers(self) -> list[Customer]:
         pass
 
     @abstractmethod
-    def get_customer_by_name(self, name: str) -> list[Customer]:
+    def list_customers_by_name(self, name: str) -> list[Customer]:
         pass
 
     @abstractmethod

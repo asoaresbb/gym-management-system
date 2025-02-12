@@ -7,15 +7,16 @@ class FitnessGym(Gym):
         super().__init__(name)
         self._customers: list[Customer] = []
 
-    def register_customer(self, name: str, phone_number: str, email: str, user: str, password: str):
+    def register_customer(self, name: str, phone_number: str, email: str, user: str, password: str) -> str:
         customer = Customer(
             id=str(len(self._customers)), name=name, phone_number=phone_number, email=email, user=user, password=password)
         self._customers.append(customer)
+        return customer.id
 
-    def get_all_customers(self) -> list[Customer]:
+    def list_customers(self) -> list[Customer]:
         return self._customers
 
-    def get_customer_by_name(self, name: str) -> list[Customer]:
+    def list_customers_by_name(self, name: str) -> list[Customer]:
         return [customer for customer in self._customers if name.lower() in customer.name.lower()]
 
     def get_customer_by_id(self, id: str) -> Customer:

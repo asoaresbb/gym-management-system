@@ -56,7 +56,7 @@ def _print_customers(customers: list[Customer]):
 
 def _handle_show_all_customers(vivaGym: FitnessGym):
     print("Registered clients: ")
-    customers = vivaGym.get_all_customers()
+    customers = vivaGym.list_customers()
     if customers:
         _print_customers(customers)
     else:
@@ -65,7 +65,7 @@ def _handle_show_all_customers(vivaGym: FitnessGym):
 
 def _handle_search_customer(vivaGym: FitnessGym):
     name = input("Which client are you trying to find? ")
-    customers = vivaGym.get_customer_by_name(name)
+    customers = vivaGym.list_customers_by_name(name)
     if customers:
         _print_customers(customers)
     else:
@@ -73,7 +73,7 @@ def _handle_search_customer(vivaGym: FitnessGym):
 
 
 def _handle_edit_customer_by_id(vivaGym: FitnessGym):
-    customers = vivaGym.get_all_customers()
+    customers = vivaGym.list_customers()
     _print_customers(customers)
     id = input("Which is the Id of the client you want to edit? ")
     try:
@@ -89,7 +89,7 @@ def _handle_edit_customer_by_id(vivaGym: FitnessGym):
 
 
 def _handle_delete_customer_by_id(vivaGym: FitnessGym):
-    customers = vivaGym.get_all_customers()
+    customers = vivaGym.list_customers()
     _print_customers(customers)
     id = input("Which is the Id of the client you want to delete? ")
     try:
