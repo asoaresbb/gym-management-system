@@ -5,26 +5,28 @@ from fitnessGym import FitnessGym, CustomerNotFound
 
 def test_get_all_customers():
     gym = FitnessGym("VivaGym Academy")
-    gym.register_customer(
+    id1 = gym.register_customer(
         name="João Silva", phone_number="932930094", email="j_silva@yahoo.com", user="JSilva", password="1234"
     )
-    gym.register_customer(
+    id2 = gym.register_customer(
         name="Ana Souza", phone_number="917331324", email="ana_souza@gmail.com", user="ASouza", password="1234",
     )
 
     customers = gym.list_customers()
 
-    assert len(customers) > 0
-    assert any(c.name == "João Silva" for c in customers)
-    assert any(c.phone_number == "932930094" for c in customers)
-    assert any(c.email == "j_silva@yahoo.com" for c in customers)
-    assert any(c.user == "JSilva" for c in customers)
-    assert any(c.password == "1234" for c in customers)
-    assert any(c.name == "Ana Souza" for c in customers)
-    assert any(c.phone_number == "917331324" for c in customers)
-    assert any(c.email == "ana_souza@gmail.com" for c in customers)
-    assert any(c.user == "ASouza" for c in customers)
-    assert any(c.password == "1234" for c in customers)
+    assert len(customers) == 2
+    joao = next(c for c in customers if c.id == id1)
+    assert joao.name == "João Silva"
+    assert joao.phone_number == "932930094"
+    assert joao.email == "j_silva@yahoo.com"
+    assert joao.user == "JSilva"
+    assert joao.password == "1234"
+    ana = next(c for c in customers if c.id == id2)
+    assert ana.name == "Ana Souza"
+    assert ana.phone_number == "917331324"
+    assert ana.email == "ana_souza@gmail.com"
+    assert ana.user == "ASouza"
+    assert ana.password == "1234"
 
 
 def test_search_customer_by_name():
