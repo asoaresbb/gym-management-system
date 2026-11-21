@@ -14,6 +14,8 @@ class Users(object):
         self.senha = senha
 
     def insertUser(self):
+        if not self.nome.strip():
+            return "O nome é obrigatório."
 
         banco = Banco()
         try:
@@ -25,6 +27,7 @@ class Users(object):
                 "VALUES (?, ?, ?, ?, ?)",
                 (self.nome, self.telefone, self.email, self.usuario, self.senha)
             )
+            self.idusuario = c.lastrowid
 
             banco.conexao.commit()
             c.close()

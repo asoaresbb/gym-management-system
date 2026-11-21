@@ -134,6 +134,10 @@ class Application:
 
         self.lblmsg["text"] = user.insertUser()
 
+        # Não gravou: deixar os campos preenchidos para o utilizador corrigir
+        if not user.idusuario:
+            return
+
         self.txtidusuario.delete(0, END)
         self.txtnome.delete(0, END)
         self.txttelefone.delete(0, END)
