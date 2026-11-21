@@ -75,16 +75,18 @@ class Users(object):
             c = banco.conexao.cursor()
 
             c.execute("SELECT * FROM usuarios WHERE idusuario = ?", (idusuario,))
-
-            for linha in c:
-                self.idusuario = linha[0]
-                self.nome = linha[1]
-                self.telefone = linha[2]
-                self.email = linha[3]
-                self.usuario = linha[4]
-                self.senha = linha[5]
-
+            linha = c.fetchone()
             c.close()
+
+            if linha is None:
+                return "Usuário não encontrado."
+
+            self.idusuario = linha[0]
+            self.nome = linha[1]
+            self.telefone = linha[2]
+            self.email = linha[3]
+            self.usuario = linha[4]
+            self.senha = linha[5]
 
             return "Busca feita com sucesso!"
         except:

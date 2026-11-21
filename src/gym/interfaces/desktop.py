@@ -181,6 +181,10 @@ class Application:
 
         self.lblmsg["text"] = user.selectUser(idusuario)
 
+        # Não encontrado: mostrar só a mensagem e deixar os campos como estão
+        if not user.idusuario:
+            return
+
         self.txtidusuario.delete(0, END)
         self.txtidusuario.insert(INSERT, user.idusuario)
 
