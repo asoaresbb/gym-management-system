@@ -1,4 +1,4 @@
-from banco import Banco
+from gym.storage.database import Banco
 
 
 class Users(object):
@@ -22,8 +22,8 @@ class Users(object):
 
             c.execute(
                 "INSERT INTO usuarios (nome, telefone, email, usuario, senha) "
-                "VALUES ('" + self.nome + "', '" + self.telefone + "', '" +
-                self.email + "', '" + self.usuario + "', '" + self.senha + "' )"
+                "VALUES (?, ?, ?, ?, ?)",
+                (self.nome, self.telefone, self.email, self.usuario, self.senha)
             )
 
             banco.conexao.commit()
@@ -59,7 +59,7 @@ class Users(object):
 
             c = banco.conexao.cursor()
 
-            c.execute("delete from usuarios where idusuario = " + self.idusuario + " ")
+            c.execute("DELETE FROM usuarios WHERE idusuario = ?", (self.idusuario,))
 
             banco.conexao.commit()
             c.close()
@@ -74,7 +74,7 @@ class Users(object):
 
             c = banco.conexao.cursor()
 
-            c.execute("select * from usuarios where idusuario = " + idusuario + "  ")
+            c.execute("SELECT * FROM usuarios WHERE idusuario = ?", (idusuario,))
 
             for linha in c:
                 self.idusuario = linha[0]

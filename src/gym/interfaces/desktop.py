@@ -1,6 +1,6 @@
 from tkinter import *
 
-from users import Users
+from gym.storage.users import Users
 
 
 # Resposta 2a
@@ -200,7 +200,12 @@ class Application:
         self.txtsenha.insert(INSERT, user.senha)
 
 
-root = Tk()
-root.title("Gymnasium management system")
-Application(root)
-root.mainloop()
+def main():
+    root = Tk()
+    root.title("Gymnasium management system")
+    Application(root)
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()

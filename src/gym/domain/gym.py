@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from datetime import date
 
-from customer import Customer
+from gym.domain.customer import Customer
 
 
 class Gym(ABC):

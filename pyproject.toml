@@ -4,10 +4,14 @@ version = "0.1.0"
 description = ""
 authors = []
 readme = "README.md"
+packages = [{ include = "gym", from = "src" }]
+
+[tool.poetry.scripts]
+gym-cli = "gym.interfaces.cli:start_app"
+gym-desktop = "gym.interfaces.desktop:main"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-tk = "^0.1.0"
 fastapi = "^0.115.8"
 uvicorn = "^0.34.0"
 

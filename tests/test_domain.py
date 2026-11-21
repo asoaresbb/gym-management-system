@@ -1,6 +1,6 @@
 import pytest
 
-from fitnessGym import FitnessGym, CustomerNotFound
+from gym.domain.fitness_gym import FitnessGym, CustomerNotFound
 
 
 def test_get_all_customers():

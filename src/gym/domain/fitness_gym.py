@@ -1,5 +1,5 @@
-from customer import Customer
-from gym import Gym
+from gym.domain.customer import Customer
+from gym.domain.gym import Gym
 
 
 class FitnessGym(Gym):

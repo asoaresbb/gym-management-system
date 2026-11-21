@@ -1,5 +1,5 @@
-from customer import Customer
-from fitnessGym import CustomerNotFound, FitnessGym
+from gym.domain.customer import Customer
+from gym.domain.fitness_gym import CustomerNotFound, FitnessGym
 
 
 def start_app():
