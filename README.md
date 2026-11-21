@@ -1,27 +1,27 @@
-# Gestão de Ginásio em Python
+# Gym Management in Python
 
-Sistema de gestão de clientes de um ginásio, desenhado com programação orientada a objetos, com interface de linha de comandos e interface gráfica.
+A system for managing a gym's customers, designed with object-oriented programming, with a command-line interface and a graphical interface.
 
-## Funcionalidades
+## Features
 
-- Registar, listar, pesquisar (por nome ou id), editar e remover clientes
-- Clientes regulares e VIP, cada um com o seu desconto
-- Uma classe abstrata `Gym` e uma implementação concreta, `FitnessGym`
-- Duas interfaces: linha de comandos (clientes em memória) e desktop em Tkinter (clientes em SQLite)
+- Register, list, search (by name or id), edit and remove customers
+- Regular and VIP customers, each with their own discount
+- An abstract `Gym` class and a concrete implementation, `FitnessGym`
+- Two interfaces: command line (customers in memory) and a Tkinter desktop app (customers in SQLite)
 
-## Como correr
+## Running
 
-Requer Python 3.9 ou mais recente e [Poetry](https://python-poetry.org/). As versões estão em `.tool-versions`, para quem usa `asdf`.
+Requires Python 3.9 or later and [Poetry](https://python-poetry.org/). The versions are in `.tool-versions`, for those who use `asdf`.
 
-Para instalar o Python e o Poetry com [asdf](https://asdf-vm.com/) (só é preciso uma vez por máquina):
+To install Python and Poetry with [asdf](https://asdf-vm.com/) (only needed once per machine):
 
 ```sh
 asdf plugin add python
 asdf plugin add poetry
-asdf install   # instala as versões do .tool-versions; compilar o Python demora alguns minutos
+asdf install   # installs the versions in .tool-versions; compiling Python takes a few minutes
 ```
 
-No macOS, o Python tem de ser compilado com o Tk 8.6 do Homebrew. Com o Tk 8.5 do sistema, a interface desktop aparece incompleta no modo escuro:
+On macOS, Python has to be compiled against Homebrew's Tk 8.6. With the system's Tk 8.5, the desktop interface shows up incomplete in dark mode:
 
 ```sh
 brew install tcl-tk@8
@@ -29,37 +29,37 @@ TK=$(brew --prefix tcl-tk@8)
 PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I$TK/include/tcl-tk' --with-tcltk-libs='-L$TK/lib -ltcl8.6 -ltk8.6'" asdf install python 3.9.16
 ```
 
-Depois, para instalar as dependências e correr:
+Then, to install the dependencies and run:
 
 ```sh
 poetry install
-poetry run gym-cli        # linha de comandos
-poetry run gym-desktop    # interface gráfica
-poetry run pytest         # testes do domínio
+poetry run gym-cli        # command line
+poetry run gym-desktop    # graphical interface
+poetry run pytest         # tests
 ```
 
-O `interfaces/web.py` é um esboço de uma interface web com FastAPI, ainda por fazer.
+`interfaces/web.py` is a sketch of a web interface with FastAPI, not yet built.
 
-## Estrutura
+## Structure
 
 ```
 src/gym/
-├── domain/       # regras de negócio, sem I/O
-│   ├── gym.py            classe abstrata com as operações do ginásio
-│   ├── fitness_gym.py    implementação concreta
-│   └── customer.py       clientes regulares e VIP
-├── storage/      # acesso à base de dados SQLite
+├── domain/       # business rules, no I/O
+│   ├── gym.py            abstract class with the gym's operations
+│   ├── fitness_gym.py    concrete implementation
+│   └── customer.py       regular and VIP customers
+├── storage/      # SQLite database access
 │   ├── database.py
 │   └── users.py
-└── interfaces/   # formas de usar a aplicação
+└── interfaces/   # ways to use the application
     ├── cli.py
     ├── desktop.py
     └── web.py
-tests/            # testes do domínio com pytest
+tests/            # pytest tests for the domain and the storage
 ```
 
-## Contexto
+## Context
 
-Projeto da unidade curricular de Programação por Objetos, Universidade Aberta, fevereiro de 2025.
+Course project for Object-Oriented Programming (Programação por Objetos), Universidade Aberta, February 2025.
 
-Desenvolvido em programação a pares com um mentor.
+Built through pair programming with a mentor.
